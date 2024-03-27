@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Definição do conjunto de caracteres e configurações de visualização -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
+    <title>Exercicio Valor Venda</title>
+</head>
+
+<body align="center">
+    <!-- Título principal da página -->
+    <h1>Valor Venda</h1>
+    <!-- Formulário para inserir o valor da venda -->
+    <form id="formulario">
+        <!-- Rótulo e campo de entrada para o valor da venda -->
+        <label for="valor">Valor da venda:</label>
+        <input type="number" id="valor" name="valor" required><br>
+        <!-- Botão para adicionar a venda -->
+        <button type="submit">Adicionar Venda</button>
+    </form>
+    <!-- Div para exibir os resultados das vendas -->
+    <div id="resultado">
+        <!-- Título dos resultados -->
+        <h2>Resultados:</h2>
+        <!-- Parágrafo para exibir a maior venda -->
+        <p id="maiorVenda"></p>
+        <!-- Parágrafo para exibir a média das vendas -->
+        <p id="mediaVendas"></p>
+        <!-- Botão para gerar a lista de vendas -->
+        <button onclick="gerarLista()">Gerar Lista de Vendas</button>
+    </div>
+    <!-- Inclusão do script JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
