@@ -1,0 +1,93 @@
+
+
+
+/* Navbar */
+.tab{
+    background-color: #A91528!important;
+}
+
+#navbar_marca{
+    font-size: 30px;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+
+#logo img{
+    width: 10%;
+    margin-right: 30px;
+}
+
+#card {
+    width: 400px;
+}
+
+
+
+
+#Card_principal{
+    background-color: gray;
+    margin-top: 6%;
+    margin-left: 10%;
+    width: 77%;
+    display: flex;
+    border-radius:2%;
+}
+
+#card_direita{
+    background-color: #A91528;
+    border-radius: 2%;
+}
+#card_direita h1{
+    color: white;
+    margin-left: 40%;
+    margin-top: 8%;
+}
+
+#card_esquerda h1{
+    color: white;
+}
+
+
+.x{
+
+    margin: 120px;
+}
+
+entrada{
+    margin-left: 35%;
+}
+
+.form-control{
+    width: 80%!important;
+    margin-left: 10%;
+}
+
+.form-login a{
+    margin-left: 36%;
+    margin-top: 5%;
+}
+
+.form-label{
+    margin-left: 10%;
+    margin-bottom: 1%;
+}
+
+
+#botao_login{
+    margin-left: 25%;
+    margin-top: 8%;
+    margin-bottom: 7%;
+
+}
+
+.btn-entrar{
+    color: #FFF;
+    background-color: #DC3545;
+    width: 50%;
+    padding: 10px 15px;
+    font-size: 1.1em;
+}
