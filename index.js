@@ -13,26 +13,39 @@ app.get('/mandar', (req, res) => {
 // Recuperando os números enviados pelo formulário
 const idade = [];
 
- idade[0] = parseFloat(req.query.idade1);    
- idade[1] = parseFloat(req.query.idade2);
- idade[2] = parseFloat(req.query.idade3);
- idade[3] = parseFloat(req.query.idade4);
- idade[4] = parseFloat(req.query.idade5);
+ const idadesString = req.query.idades;    
 
-//Criando uma variável para receber a maior idade 
-var maiorIdade = idade[0];
+ //transformando em várias idades 
+ const idades = idadesString.split(",").map((idade) => parseFloat(idade));
 
-for (i=0;i<4;i++){
-    if(maiorIdade<=idade[i+1]){
-        maiorIdade = idade[i+1];
-    }
-}
 
+ // Criando uma variável para receber a maior idade
+ let maiorIdade = idades[0];
+ for (let i = 1; i < idades.length; i++) {
+   if (maiorIdade < idades[i]) {
+     maiorIdade = idades[i];
+   }
+ }
+
+
+  // Criando string com as idades
+  const listaIdades = idades.join(", ");
+  
 // Realizando a soma das idades 
-const soma = idade[0] + idade[1] + idade[2] + idade[3] + idade[4];
+const soma = idades.reduce((acc, curr) => acc + curr, 0);
 // Enviando o resultado como resposta
-res.send(`Foram Inseridas ${idade.length}(a) idades\nA soma das idades ${idade[0]}, ${idade[1]}, ${idade[2]}, ${idade[3]} e ${idade[4]} é ${soma}\n A maior idade foi ${maiorIdade}`);
 });
+
+
 // Iniciando o servidor na porta 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+
+
+res.send(`
+<p>As idades adicionadas foram: ${listaIdades}.</p>
+<p>Foram inseridas ${idades.length} idades.</p>
+<p>A soma das idades é ${soma}.</p>
+<p>A maior idade foi ${maiorIdade}.</p>
+`);
