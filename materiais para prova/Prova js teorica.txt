@@ -1,0 +1,138 @@
+Questão Objetivas:
+1 identifique quais as linhas corrtas para completar o trecho de codigo abaixo para que funcione prefeitamente na ordem correta:
+
+// Método para mostrar lista de alunos cadastrados
+        function mostrarAlunosCadastrados(aluno) {
+            var listaAlunosDiv = document.getElementById('lista-alunos');
+            var paragrafo = document.createElement('p');
+            paragrafo.textContent = 'Nome: ' + aluno.capitalizeFirstLetter() + ' | Nota 1: ' + aluno.nota1 + ' | Nota 2: ' + aluno.nota2 + ' | Média: ' + aluno.media.toFixed(2);
+            listaAlunosDiv.appendChild(paragrafo);
+        }
+
+ listaAlunosDiv.appendChild(paragrafo); e var paragrafo = document.createElement('p');
+ var  paragrafo = document.createElement('p'); e  listaAlunosDiv.appendChild(paragrafo); <
+ aluno.capitalizeFirstLetter() e  listaAlunosDiv.appendChild(paragrafo); 
+ listaAlunosDiv.appendChild(paragrafo); e aluno.capitalizeFirstLetter()
+var listaAlunosDiv e document.getElementById('lista-alunos');const form = document.getElementById('service-form');
+    const servicesList = document.getElementById('services');
+    const totalDisplay = document.getElementById('total');
+    const clearButton = document.getElementById('clear-history');
+    let total = 0;
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const clientName = document.getElementById('client-name').value;
+      const serviceType = document.getElementById('service-type').value;
+      const serviceAmount = parseFloat(document.getElementById('service-amount').value);
+
+      const listItem = document.createElement('li');
+      listItem.textContent = `Cliente: ${clientName}, Serviço: ${serviceType}, Valor: R$ ${serviceAmount.toFixed(2)}`;
+      servicesList.appendChild(listItem);
+
+      total += serviceAmount;
+      totalDisplay.textContent = `R$ ${total.toFixed(2)}`;
+
+      form.reset();
+    });
+
+    clearButton.addEventListener('click', function() {
+      servicesList.innerHTML = '';
+      total = 0;
+      totalDisplay.textContent = `R$ ${total.toFixed(2)}`;
+    });
+document.getElementById('lista-alunos');e var paragrafo = document.createElement('p');
+
+2 
+Em JavaScript, o conceito de "rotas" geralmente se refere à maneira como uma aplicação web direciona o tráfego do usuário com base na URL que ele acessa. 
+Isso é comumente utilizado em frameworks e bibliotecas de desenvolvimento web, 
+como o Express.js para Node.js ou o React Router para aplicações React.
+acerca de Rotas complete o codigo abaixo:
+
+const express = require('express');
+const app = express();
+const path = require('path');
+// Configurando o Express para usar arquivos estáticos (HTML, CSS, JavaScript)
+app.use(express.static(path.join(__dirname, 'public')));
+// Rota para a página inicial
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Iniciando o servidor na porta 3000
+__________________________________________
+app.listen(PORT, () => console.log(`Servidor rodando na
+porta ${PORT}`));
+
+resposta
+const express = require('express');
+const app = express();
+const path = require('path');
+// Configurando o Express para usar arquivos estáticos (HTML, CSS, JavaScript)
+_____________________________________________
+// Rota para a página inicial
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Iniciando o servidor na porta 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na
+porta ${PORT}`));
+
+3 acerca de Java Script puro sem o uso do Node js complete o codigo abaixo corretamnte para que seja executado para preencher uma lista  possibilitar a impressão da mesma.
+
+// variáveis do formulário
+        let res = document.getElementById("res");
+        let nomeVendedor = document.getElementById("nomeVendedor");
+        let valorVenda = document.getElementById("valorVenda");
+       // arrays
+        let vendedor = [];
+        let venda = [];
+        let desconto = [];
+        function cadastrar() { //btn cadastrar
+            if (nomeVendedor.value == "" || valorVenda.value == "") {
+                window.alert("Erro!!! Nome do vendedor ou Valor não foram preencidos");
+            } else {
+            desconto.push(Number(valorVenda.value) * 0.1); //pucha o valor para a variável
+            _________________________________________;
+            ____________________________________________;
+            res.innerHTML = ""; // zera a tabela para que não haja itens duplicados
+            res.innerHTML +="<p>Id</p><p>Nome Vendedor</p><p>Valor</p> <p>Desconto</p>"; // cabeçalho
+            for(____________________________________) {// estrutura que mostra a tabela
+                let o = i + 1;
+                res.innerHTML += `<p>${o}</p><p>${vendedor[i]}</p><p>R$${venda[i].toFixed(2)}</p><p>R$${desconto[i].toFixed(2)}</p>`;
+            }
+            nomeVendedor.value = '';
+            valorVenda.value = ''; 
+            event.preventDefault();
+            }
+
+  resposta
+// variáveis do formulário
+        let res = document.getElementById("res");
+        let nomeVendedor = document.getElementById("nomeVendedor");
+        let valorVenda = document.getElementById("valorVenda");
+       // arrays
+        let vendedor = [];
+        let venda = [];
+        let desconto = [];
+        function cadastrar() { //btn cadastrar
+            if (nomeVendedor.value == "" || valorVenda.value == "") {
+                window.alert("Erro!!! Nome do vendedor ou Valor não foram preencidos");
+            } else {
+            desconto.push(Number(valorVenda.value) * 0.1); //pucha o valor para a variável
+            vendedor.push(nomeVendedor.value);
+            venda.push(Number(valorVenda.value));
+            res.innerHTML = ""; // zera a tabela para que não haja itens duplicados
+            res.innerHTML +="<p>Id</p><p>Nome Vendedor</p><p>Valor</p> <p>Desconto</p>"; // cabeçalho
+            for(i = 0; i < vendedor.length; i++) {// estrutura que mostra a tabela
+                let o = i + 1;
+                res.innerHTML += `<p>${o}</p><p>${vendedor[i]}</p><p>R$${venda[i].toFixed(2)}</p><p>R$${desconto[i].toFixed(2)}</p>`;
+            }
+            nomeVendedor.value = '';
+            valorVenda.value = ''; 
+            event.preventDefault();
+            }
+
+4

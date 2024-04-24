@@ -1,0 +1,115 @@
+------------------------------------------INDEX.JS-------------------------------------------------------
+class Aluno {
+  constructor(nome, nota1, nota2) {
+    this.nome = nome;
+    this.nota1 = nota1;
+    this.nota2 = nota2;
+    this.mediaAluno = (nota1 + nota2) / 2;
+  }
+
+  static calcularMediaGeral(alunos) {
+    const totalNotas = alunos.reduce((acc, aluno) => acc + aluno.mediaAluno, 0);
+    return totalNotas / alunos.length;
+  }
+
+  static alunoComMaiorMedia(alunos) {
+    return alunos.reduce((alunoAtual, alunoProximo) => {
+      return alunoAtual.mediaAluno > alunoProximo.mediaAluno ? alunoAtual : alunoProximo;
+    });
+  }
+
+  getNome() {
+    return this.nome;
+  }
+
+  getNota1() {
+    return this.nota1;
+  }
+
+  getNota2() {
+    return this.nota2;
+  }
+
+  getMediaAluno() {
+    return this.mediaAluno;
+  }
+}
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+// Configurando o Express para usar arquivos estÃ¡ticos (HTML, CSS, JavaScript)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Dados dos alunos
+let alunos = [];
+
+app.get('/cadastrar', (req, res) => {
+  // Recuperando os dados enviados pelo formulÃ¡rio
+  const aluno = new Aluno(req.query.nome, parseFloat(req.query.n1), parseFloat(req.query.n2));
+
+  // Adicionando o aluno ao vetor
+  alunos.push(aluno);
+
+  // Enviando o resultado como resposta
+  res.redirect('/listar');
+});
+
+// Rota para listar alunos
+app.get('/listar', (req, res) => {
+  const tabelaAlunos = `
+    <h2>Lista de Alunos</h2>
+    <table border="1">
+      <tr>
+        <th>Nome</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>MÃ©dia</th>
+      </tr>
+      ${alunos.map(aluno => `
+        <tr>
+          <td>${aluno.getNome()}</td>
+          <td>${aluno.getNota1()}</td>
+          <td>${aluno.getNota2()}</td>
+          <td>${aluno.getMediaAluno()}</td>
+        </tr>
+      `).join('')}
+    </table>
+    <h3>Aluno com maior mÃ©dia: ${Aluno.alunoComMaiorMedia(alunos).getNome()} - MÃ©dia: ${Aluno.alunoComMaiorMedia(alunos).getMediaAluno()}</h3>
+    <h3>MÃ©dia geral da turma: ${Aluno.calcularMediaGeral(alunos)}</h3>
+    <a href="/">Voltar</a>`
+  res.send(tabelaAlunos);
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+
+------------------------------------------INDEX.HTML-------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de alunos</title>
+</head>
+
+<body>
+    <h1>Lista de alunos cadastrados</h1>
+    <form action="/cadastrar" method="GET">
+        <label for="nome">Nome do aluno:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+
+        <label for="n1">Primeira nota:</label>
+        <input type="number" id="n1" name="n1"><br><br>
+
+        <label for="n2">Segunda nota:</label>
+        <input type="number" id="n2" name="n2"><br><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+ 
+</body>
+
+</html>

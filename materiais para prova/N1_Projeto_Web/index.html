@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 1</title>
+    <link rel="stylesheet" href="./styles.css">
+    
+</head>
+<body>
+    <div class="container">
+        <form>
+
+            <label>Titulo</label>
+            <input 
+                type="text" 
+                id="titulo"
+                placeholder="Digite o titulo da tarefa"    
+            >
+
+            <label>Descrição</label>
+            <textarea 
+                id="descricao" 
+                rows="5" 
+                cols="30"
+                placeholder="Uma breve descrição da tarefa"
+            ></textarea>
+
+            <label>Data a ser executado</label>
+            <input 
+                type="datetime-local" 
+                id="data_exec"
+            >
+
+            <label>Categoria</label>
+            <input 
+                type="text" 
+                id="categoria"
+                placeholder="Digite a categoria da tarefa"
+            >
+
+            <label>Prioridade</label>
+            <input 
+                type="number" 
+                id="prioridade"
+                value="1"
+            >
+
+            <button type="submit" onclick="submitDados(event)">Submit</button>
+            <button onclick="organizarCategoria(event)">Filtrar Categoria</button>
+            <button onclick="organizarPrioridade(event)">Filtrar Prioridade</button>
+            <button onclick="listarTarefas(event)">Listar tarefas</button>
+        </form>
+    </div>
+    <div id="container-categorias" class="container-dados"></div>
+    <div id="container-prioridades" class="container-dados"></div>
+    <div id="container-dados" class="container-dados"></div>
+
+    <script src="./index.js"></script>
+</body>
+</html>

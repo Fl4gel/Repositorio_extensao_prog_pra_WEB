@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="syle.css">
+</head>
+<body>
+   
+    <form action="/resultado" method="GET">
+        <label for="idade">Digete uma Idade:</label>
+        <input type="text" name="idade" id="idade">
+        <button type="submit">Adicionar idade</button>
+ 
+    </form>
+   
+</body>
+</html>
+
+
+body{
+    background-color:bisque;
+}
+div {
+    padding: 30px 20px 20px 20px;
+    text-align: center;
+    align-items: center;
+}
+
+
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => {res.sendFile(path.join(__dirname, 'public', 'index.html'));})
+let idades = [];
+let valorSomado=0;
+
+app.get('/resultado',(req,res) => {
+    
+    let maior = 0;
+    const valor = parseInt(req.query.idade);
+    idades.push(valor);
+    
+    valorSomado = valorSomado + valor;
+    let resposta = "";
+
+   
+    idades.forEach(idade => {
+       
+        if(idade >maior){
+            maior = idade;
+        }
+        resposta += ` ${idade}\n`;
+    });
+    resposta += `Numero de idades e: ${idades.length}\t`;
+    resposta +=`Soma das idades: ${valorSomado}\t`
+    resposta += `maior idade:${maior}\ts`
+
+    res.send(resposta);
+})
+
+
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+console.log('Servidor iniciado com sucesso!');
+

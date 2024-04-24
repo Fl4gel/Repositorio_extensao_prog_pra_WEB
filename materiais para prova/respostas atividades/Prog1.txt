@@ -1,0 +1,113 @@
+class Cachorro {
+  constructor(nome, peso, idade) {
+    this.nome = nome;
+    this.peso = peso;
+    this.idade = idade;
+  }
+  calcularPorte() {
+    const idadeSemanas = this.idade * 52;
+    const pesoEsperado = this.peso / idadeSemanas * 52;
+
+    if (pesoEsperado <= 6) {
+      return 'Mini ou Toy';
+    } else if (pesoEsperado > 6 && pesoEsperado <= 15) {
+      return 'Pequeno ou Anão';
+    } else if (pesoEsperado > 15 && pesoEsperado <= 25) {
+      return 'Médio';
+    } else if (pesoEsperado > 25 && pesoEsperado <= 45) {
+      return 'Grande';
+    } else if (pesoEsperado > 45) {
+      return 'Gigante';
+    }
+
+  }
+
+  getNome() {
+    return this.nome;
+  }
+
+  getPeso() {
+    return this.peso;
+  }
+
+  getIdade() {
+    return this.idade;
+  }
+}
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+// Configurando o Express para usar arquivos estáticos (HTML, CSS, JavaScript)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Dados dos alunos
+let cachorros = [];
+
+app.get('/cadastrar', (req, res) => {
+  // Recuperando os dados enviados pelo formulário
+  const cachorro = new Cachorro(req.query.nome, parseFloat(req.query.peso), parseInt(req.query.idade));
+
+  // Adicionando o cachorro ao vetor
+  cachorros.push(cachorro);
+
+  // Enviando o resultado como resposta
+  res.redirect('/listar');
+});
+
+// Rota para listar cachorros
+app.get('/listar', (req, res) => {
+  const tabelaCachorros = `
+    <h2>Lista de Cachorros</h2>
+    <table border="1">
+      <tr>
+        <th>Nome</th>
+        <th>Peso</th>
+        <th>Idade</th>
+        <th>Porte</th>
+      </tr>
+      ${cachorros.map(cachorro => `
+        <tr>
+          <td>${cachorro.getNome()}</td>
+          <td>${cachorro.getPeso()}</td>
+          <td>${cachorro.getIdade()}</td>
+          <td>${cachorro.calcularPorte()}</td>
+        </tr>
+      `).join('')}
+    </table>
+    <a href="/">Voltar</a>`
+    res.send(tabelaCachorros);
+  });
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+------------------------------------------INDEX.HTML-------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de cachorros</title>
+</head>
+
+<body>
+    <h1>Cadastrar Cachorro</h1>
+    <form action="/cadastrar" method="GET">
+        <label for="nome">Nome do Cachorro:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+
+        <label for="peso">Peso:</label>
+        <input type="number" id="peso" name="peso"><br><br>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade"><br><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+    
+</body>
+
+</html>

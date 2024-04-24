@@ -1,0 +1,17 @@
+Tema 2: Desenvolvimento de um Sistema em JavaScript para Gestão de Serviços por Tipo em Pet Shop
+Descrição da Atividade:
+Desenvolva um sistema em JavaScript voltado para a gestão de serviços por tipo em um pet shop. O sistema permitirá aos usuários registrar serviços por tipo, somar o valor total dos serviços a cada item cadastrado e listar detalhes de cada serviço, incluindo o nome do cliente, valor do serviço e o tipo de serviço realizado. O sistema utilizará uma interface gráfica HTML e CSS para interação com o usuário. Funcionalidades do Aplicativo:
+Registro de Despesas e Receitas: O usuário poderá adicionar serviços, informando os itens acima mensionados.
+Categorização de Serviços: O usuário poderá categorizar cada serviço digitano ou escolhendo em um componente html para facilitar a análise posterior.
+Gerar Relatórios: O aplicativo deverá gerar relatórios de serviços atualizando o mesmo a cada inserções de dados no aplicativo.
+Componentes do Aplicativo:
+HTML:
+Crie uma interface gráfica para entrada de serviços, categorização por tipo as transações, visualização dos relatórios.
+CSS:
+Estilize a interface para torná-la mais amigável e intuitiva.
+JavaScript:
+Implemente a lógica do aplicativo, incluindo funções para adicionar serviço , categorizá-las, visualizar relatório.
+Observações:
+Certifique-se de validar os dados de entrada para garantir que sejam numéricos e válidos para os cálculos.
+Implemente uma lógica eficiente para categorizar as transações e gerar os relatórios.
+Teste o aplicativo com diferentes conjuntos de dados para garantir sua robustez e correção

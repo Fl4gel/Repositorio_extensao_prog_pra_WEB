@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+  }
+
+  img{
+    border-radius: 50%;
+  }
+  .container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .header img {
+    width: 100px;
+    height: auto;
+  }
+  h1 {
+    text-align: center;
+    color: rgb(255, 123, 0);
+    margin-bottom: 20px;
+    
+  }
+  form {
+    margin-bottom: 20px;
+  }
+  label {
+    color: #555;
+  }
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    outline: none;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #services-list {
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+  }
+  #services-list h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin-bottom: 10px;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    position: relative;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  .paw-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: auto;
+  }
+  #clear-history {
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    outline: none;
+  }
+  #clear-history:hover {
+    background-color: #d32f2f;
+  }

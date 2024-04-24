@@ -1,0 +1,143 @@
+index.html
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção de Pets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Adoção de Pets</h1>
+        <form id="formulario-pet">
+            <label for="nome">Nome do Pet:</label>
+            <input type="text" id="nome" required>
+            
+            <label for="idade">Idade do Pet (em anos):</label>
+            <input type="number" id="idade" required>
+            
+            <label for="peso">Peso do Pet (em kg):</label>
+            <input type="number" id="peso" required>
+            
+            <button type="submit">Adotar</button>
+        </form>
+
+        <div id="lista-pets"></div>
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>
+
+
+style.css
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #070002;
+}
+
+#lista-pets p {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+index.js
+
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const pets = [];
+
+function calcularPorte(peso, idade) {
+    const idadeSemanas = idade * 52;
+    const porte = peso / idadeSemanas;
+
+    if (porte < 1) {
+        return 'Pequeno';
+    } else if (porte >= 1 && porte < 3) {
+        return 'Médio';
+    } else {
+        return 'Grande';
+    }
+}
+
+app.get('/adicionar-pet', (req, res) => {
+    const { nome, idade, peso } = req.query;
+
+    const porte = calcularPorte(parseFloat(peso), parseInt(idade));
+
+    pets.push({ nome, idade, peso, porte });
+
+    res.send('Pet adicionado com sucesso!');
+});
+
+app.get('/lista-pets', (req, res) => {
+    res.json(pets);
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
